@@ -100,7 +100,7 @@ export default function Layout({ children }) {
             <MenuIcon />
           </IconButton>
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-            <img src={logo} alt="NeoGenômica Logo" style={{ height: 40, marginRight: 12 }} />
+            <img src={logo} alt="NeoGenomica Logo" style={{ height: 40, marginRight: 12 }} />
           </Box>
           
           {/* Informações do usuário no header */}

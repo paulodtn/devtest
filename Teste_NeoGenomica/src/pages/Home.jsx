@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
-        Bem-vindo ao Sistema NeoGenômica
+        Bem-vindo ao Sistema NeoGenomica
       </Typography>
       <Typography variant="body1" paragraph>
         Gerencie seus pacientes e exames de forma eficiente e segura.

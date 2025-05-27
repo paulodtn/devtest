@@ -158,7 +158,7 @@ const Login = () => {
           >
             <img 
               src={logo} 
-              alt="NeoGenômica Logo" 
+              alt="NeoGenomica Logo" 
               style={{ 
                 height: 60,
                 marginBottom: 24,
