@@ -1,4 +1,4 @@
-# 🧬 NeoGenômica - Sistema de Análise Genômica
+# NeoGenômica - Sistema de Análise Genômica
 
 <div align="center">
 
@@ -12,22 +12,22 @@
 
 </div>
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
 O **NeoGenômica** é uma aplicação web full-stack desenvolvida para análise e gerenciamento de dados genômicos, especificamente focada no gerenciamento de primers para sequenciamento genético. O sistema oferece uma interface moderna e intuitiva para visualização, filtros avançados, importação/exportação de dados genômicos e auditoria completa de operações.
 
-### 🎯 Principais Funcionalidades
+### Principais Funcionalidades
 
-- **🔍 Visualização de Primers**: Interface responsiva para navegação e visualização de dados genômicos
-- **🧪 Filtros Avançados**: Sistema de filtros estilo IGV (Integrative Genomics Viewer) para análise genômica
-- **📊 Importação/Exportação**: Suporte para arquivos CSV e formato BED
-- **🔐 Sistema de Autenticação Avançado**: Login seguro com bloqueio automático contra ataques de força bruta
-- **🛡️ Proteção contra Força Bruta**: Bloqueio temporário após 3 tentativas falhadas de login
-- **📈 Auditoria Completa**: Rastreamento de todas as operações realizadas no sistema
-- **🎨 Interface Moderna**: Design responsivo com Material-UI e tema escuro/claro
-- **🔄 API RESTful**: Backend robusto com endpoints bem documentados
+- **Visualização de Primers**: Interface responsiva para navegação e visualização de dados genômicos
+- **Filtros Avançados**: Sistema de filtros estilo IGV (Integrative Genomics Viewer) para análise genômica
+- **Importação/Exportação**: Suporte para arquivos CSV e formato BED
+- **Sistema de Autenticação Avançado**: Login seguro com bloqueio automático contra ataques de força bruta
+- **Proteção contra Força Bruta**: Bloqueio temporário após 3 tentativas falhadas de login
+- **Auditoria Completa**: Rastreamento de todas as operações realizadas no sistema
+- **Interface Moderna**: Design responsivo com Material-UI e tema escuro/claro
+- **API RESTful**: Backend robusto com endpoints bem documentados
 
-## 🚀 Demonstração
+## Demonstração
 
 ### Interface Principal
 ![Interface Principal](https://via.placeholder.com/800x400/1e293b/00D6E4?text=Interface+Principal+do+NeoGen%C3%B4mica)
@@ -37,7 +37,7 @@ O **NeoGenômica** é uma aplicação web full-stack desenvolvida para análise 
 
 > **Nota**: Para uma demonstração completa, acesse o sistema localmente seguindo as instruções de instalação abaixo.
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 ### Frontend
 - **React** 18.2.0 - Biblioteca para construção da interface
@@ -63,7 +63,7 @@ O **NeoGenômica** é uma aplicação web full-stack desenvolvida para análise 
 - **RSwag** - Documentação da API
 - **VSCode** - Ambiente de desenvolvimento integrado
 
-## 📦 Instalação e Configuração
+## Instalação e Configuração
 
 ### Pré-requisitos
 
@@ -75,7 +75,7 @@ Certifique-se de ter instalado em sua máquina:
 - **PostgreSQL** 12.0 ou superior
 - **Git**
 
-### 🔧 Configuração do Backend
+### Configuração do Backend
 
 1. **Clone o repositório**
    ```bash
@@ -124,7 +124,7 @@ Certifique-se de ter instalado em sua máquina:
    rails server -p 3000
    ```
 
-### ⚛️ Configuração do Frontend
+### Configuração do Frontend
 
 1. **Na raiz do projeto, instale as dependências**
    ```bash
@@ -146,7 +146,7 @@ Certifique-se de ter instalado em sua máquina:
    npm start
    ```
 
-### 🐳 Usando Docker (Opcional)
+### Usando Docker (Opcional)
 
 ```bash
 # Backend
@@ -159,7 +159,7 @@ docker build -t neogenomica-frontend .
 docker run -p 3001:3001 neogenomica-frontend
 ```
 
-## 🚀 Como Usar
+## Como Usar
 
 1. **Acesse a aplicação**
    - Frontend: `http://localhost:3001`
@@ -176,7 +176,7 @@ docker run -p 3001:3001 neogenomica-frontend
    - Importe/exporte dados em formato CSV ou BED
    - Visualize o histórico de auditoria
 
-## 📚 Documentação da API
+## Documentação da API
 
 A API RESTful está disponível em `http://localhost:3000/api/v1/` com os seguintes endpoints:
 
@@ -201,9 +201,9 @@ A API RESTful está disponível em `http://localhost:3000/api/v1/` com os seguin
 - `POST /api/v1/audit_logs/log_bed_export` - Registra exportação BED
 - `POST /api/v1/audit_logs/log_csv_export` - Registra exportação CSV
 
-## 🔒 Sistema de Segurança e Autenticação
+## Sistema de Segurança e Autenticação
 
-### 🛡️ Proteção contra Ataques de Força Bruta
+### Proteção contra Ataques de Força Bruta
 
 O NeoGenômica implementa um sistema robusto de proteção contra ataques de força bruta no login:
 
@@ -227,7 +227,7 @@ O NeoGenômica implementa um sistema robusto de proteção contra ataques de for
 - **Contador Regressivo**: Atualização em tempo real do tempo restante
 - **Botão Inteligente**: Desabilitado durante bloqueio com texto dinâmico
 
-### 🔐 Configuração de Segurança
+### Configuração de Segurança
 
 #### Variáveis de Ambiente
 Certifique-se de configurar adequadamente as seguintes variáveis de ambiente:
@@ -243,12 +243,12 @@ Certifique-se de configurar adequadamente as seguintes variáveis de ambiente:
 - **Logout Seguro**: Invalidação adequada de sessões
 
 #### Boas Práticas Implementadas
-- ✅ **Controle de Tentativas**: Prevenção contra ataques de força bruta
-- ✅ **Cache Seguro**: Armazenamento temporário com expiração automática
-- ✅ **Logs de Segurança**: Rastreamento de tentativas de login
-- ✅ **Validação de IP**: Controle por endereço IP do cliente
-- ✅ **Interface Responsiva**: Feedback visual claro para o usuário
-- ✅ **Limpeza Automática**: Reset de contadores após login bem-sucedido
+- **Controle de Tentativas**: Prevenção contra ataques de força bruta
+- **Cache Seguro**: Armazenamento temporário com expiração automática
+- **Logs de Segurança**: Rastreamento de tentativas de login
+- **Validação de IP**: Controle por endereço IP do cliente
+- **Interface Responsiva**: Feedback visual claro para o usuário
+- **Limpeza Automática**: Reset de contadores após login bem-sucedido
 
 ### Exemplo de configuração segura:
 ```bash
@@ -258,9 +258,9 @@ SECRET_KEY_BASE=sua_chave_secreta_muito_longa_e_aleatoria
 RAILS_ENV=development
 ```
 
-> ⚠️ **Importante**: Nunca commite arquivos `.env` ou credenciais no repositório. Certifique-se de que estão listados no `.gitignore`.
+> **Importante**: Nunca commite arquivos `.env` ou credenciais no repositório. Certifique-se de que estão listados no `.gitignore`.
 
-## 🧪 Executando Testes
+## Executando Testes
 
 ### Backend
 ```bash
@@ -290,7 +290,7 @@ ruby test_login_success.rb
 npm test
 ```
 
-## 🤝 Como Contribuir
+## Como Contribuir
 
 Contribuições são sempre bem-vindas! Para contribuir:
 
@@ -309,58 +309,28 @@ Contribuições são sempre bem-vindas! Para contribuir:
    ```
 5. **Abra um Pull Request**
 
-### 📋 Diretrizes de Contribuição
+### Diretrizes de Contribuição
 
 - Siga os padrões de código estabelecidos (RuboCop para Ruby, ESLint para JavaScript)
 - Escreva testes para novas funcionalidades
 - Documente mudanças significativas
 - Use mensagens de commit descritivas
 
-## 📄 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-```
-MIT License
+## Autores e Créditos
 
-Copyright (c) 2024 NeoGenômica
+- **Desenvolvedor Principal** - [Paulo de Tarso Nascimento Filho](https://github.com/paulodtn)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
-## 👥 Autores e Créditos
-
-- **Desenvolvedor Principal** - [Seu Nome](https://github.com/seu-usuario)
-- **Contribuidores** - Veja a lista de [contribuidores](https://github.com/seu-usuario/neogenomica/contributors)
-
-### 🙏 Agradecimentos
-
-- Comunidade Ruby on Rails
-- Equipe do React e Material-UI
-- Contribuidores de bibliotecas open source utilizadas
 
 ---
 
 <div align="center">
 
-**[⬆ Voltar ao topo](#-neogenômica---sistema-de-análise-genômica)**
+**[Voltar ao topo](#neogenômica---sistema-de-análise-genômica)**
 
-Feito com ❤️ para a comunidade científica
+
 
 </div> 
