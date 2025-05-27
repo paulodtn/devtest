@@ -209,7 +209,7 @@ A API RESTful está disponível em `http://localhost:3000/api/v1/` com os seguin
 
 ### Proteção contra Ataques de Força Bruta
 
-O NeoGenômica implementa um sistema robusto de proteção contra ataques de força bruta no login:
+O NeoGenomica implementa um sistema robusto de proteção contra ataques de força bruta no login:
 
 #### Características do Sistema de Bloqueio:
 - **Limite de Tentativas**: Máximo de 3 tentativas de login por usuário/IP
