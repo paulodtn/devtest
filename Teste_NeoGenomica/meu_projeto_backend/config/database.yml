@@ -1,0 +1,23 @@
+# PostgreSQL config
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch("DB_USERNAME") { "postgres" } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { "sua_senha_aqui" } %>
+  host: <%= ENV.fetch("DB_HOST") { "localhost" } %>
+  port: <%= ENV.fetch("DB_PORT") { "5432" } %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME") { "neogenomica_development" } %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch("DB_TEST_NAME") { "neogenomica_test" } %>
+
+production:
+  <<: *default
+  database: <%= ENV.fetch("DB_PROD_NAME") { "neogenomica_production" } %>
+  username: <%= ENV['NEOGENOMICA_DATABASE_USERNAME'] %>
+  password: <%= ENV['NEOGENOMICA_DATABASE_PASSWORD'] %> 

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoGenomica - Cadastro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 15px rgba(0, 214, 228, 0.5);
+        }
+        
+        .input-field:focus {
+            box-shadow: 0 0 0 3px rgba(0, 214, 228, 0.3);
+        }
+        
+        .password-strength {
+            height: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .strength-0 { width: 0%; background-color: #ef4444; }
+        .strength-1 { width: 25%; background-color: #ef4444; }
+        .strength-2 { width: 50%; background-color: #f59e0b; }
+        .strength-3 { width: 75%; background-color: #84cc16; }
+        .strength-4 { width: 100%; background-color: #10b981; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="relative w-full max-w-md z-10">
+        <div class="bg-slate-800/90 backdrop-blur-md rounded-2xl shadow-xl overflow-hidden border border-slate-700/50">
+            <!-- Header -->
+            <div class="p-8 text-center">
+                <h1 class="text-3xl font-bold text-white mb-2">NeoGenomica</h1>
+                <p class="text-slate-300">Crie sua conta para acessar o sistema</p>
+            </div>
+            
+            <!-- Flash Messages -->
+            <% if flash[:notice] %>
+                <div class="px-8">
+                    <div class="text-green-400 text-sm mb-2"><%= flash[:notice] %></div>
+                </div>
+            <% elsif flash[:alert] %>
+                <div class="px-8">
+                    <div class="text-red-400 text-sm mb-2"><%= flash[:alert] %></div>
+                </div>
+            <% end %>
+            
+            <!-- Form -->
+            <form class="px-8 pb-8" action="/users" method="post" onsubmit="return checkPasswordMatch();">
+                <%= csrf_meta_tags %>
+                
+                <div class="space-y-5">
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-slate-300 mb-1">Nome de Usuário</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-user text-slate-400"></i>
+                            </div>
+                            <input type="text" id="username" name="user[username]" 
+                                   class="input-field w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-[#00D6E4] transition duration-200" 
+                                   placeholder="Escolha um nome de usuário" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-300 mb-1">E-mail</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-envelope text-slate-400"></i>
+                            </div>
+                            <input type="email" id="email" name="user[email]" 
+                                   class="input-field w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-[#00D6E4] transition duration-200" 
+                                   placeholder="Digite seu e-mail" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-slate-300 mb-1">Senha</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-lock text-slate-400"></i>
+                            </div>
+                            <input type="password" id="password" name="user[password]" 
+                                   class="input-field w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-[#00D6E4] transition duration-200" 
+                                   placeholder="Crie uma senha segura" required>
+                            <button type="button" class="absolute right-3 top-3 text-slate-400 hover:text-[#00D6E4]" id="togglePassword" aria-label="Exibir senha">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="mt-2 flex items-center">
+                            <div id="password-strength" class="password-strength strength-0 rounded-full"></div>
+                            <span id="strength-text" class="ml-2 text-xs text-slate-400">Muito fraca</span>
+                        </div>
+                        <ul class="mt-2 text-xs text-slate-400 space-y-1">
+                            <li id="length-requirement" class="flex items-center">
+                                <i class="fas fa-circle text-[0.5rem] mr-2"></i>
+                                <span>Mínimo 8 caracteres</span>
+                            </li>
+                            <li id="uppercase-requirement" class="flex items-center">
+                                <i class="fas fa-circle text-[0.5rem] mr-2"></i>
+                                <span>Pelo menos 1 letra maiúscula</span>
+                            </li>
+                            <li id="number-requirement" class="flex items-center">
+                                <i class="fas fa-circle text-[0.5rem] mr-2"></i>
+                                <span>Pelo menos 1 número</span>
+                            </li>
+                            <li id="special-requirement" class="flex items-center">
+                                <i class="fas fa-circle text-[0.5rem] mr-2"></i>
+                                <span>Pelo menos 1 caractere especial</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <label for="confirm-password" class="block text-sm font-medium text-slate-300 mb-1">Confirme sua Senha</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-lock text-slate-400"></i>
+                            </div>
+                            <input type="password" id="confirm-password" name="user[password_confirmation]" 
+                                   class="input-field w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-[#00D6E4] transition duration-200" 
+                                   placeholder="Digite novamente sua senha" required>
+                            <button type="button" class="absolute right-3 top-3 text-slate-400 hover:text-[#00D6E4]" id="toggleConfirmPassword" aria-label="Exibir senha">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <p id="password-match-error" class="mt-1 text-xs text-red-400 hidden">As senhas não coincidem</p>
+                    </div>
+                    
+                    <div>
+                        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-[#00D6E4] hover:bg-[#00b8c4] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00D6E4] transition duration-200 glow-effect">
+                            Criar Conta
+                        </button>
+                    </div>
+                </div>
+            </form>
+            
+            <!-- Footer -->
+            <div class="px-8 py-4 bg-slate-800/50 text-center border-t border-slate-700/50">
+                <p class="text-xs text-slate-400">
+                    Já possui uma conta? <a href="login.html" class="font-medium text-[#00D6E4] hover:text-[#00b8c4]">Faça login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+                this.setAttribute('aria-label', 'Ocultar senha');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+                this.setAttribute('aria-label', 'Exibir senha');
+            }
+        });
+        
+        // Toggle confirm password visibility
+        document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const icon = this.querySelector('i');
+            
+            if (confirmPasswordInput.type === 'password') {
+                confirmPasswordInput.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+                this.setAttribute('aria-label', 'Ocultar senha');
+            } else {
+                confirmPasswordInput.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+                this.setAttribute('aria-label', 'Exibir senha');
+            }
+        });
+        
+        // Check password match
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const passwordMatchError = document.getElementById('password-match-error');
+        
+        function checkPasswordMatch() {
+            if (passwordInput.value && confirmPasswordInput.value && passwordInput.value !== confirmPasswordInput.value) {
+                confirmPasswordInput.classList.add('border-red-500');
+                passwordMatchError.classList.remove('hidden');
+                return false;
+            } else {
+                confirmPasswordInput.classList.remove('border-red-500');
+                passwordMatchError.classList.add('hidden');
+                return true;
+            }
+        }
+        
+        passwordInput.addEventListener('input', checkPasswordMatch);
+        confirmPasswordInput.addEventListener('input', checkPasswordMatch);
+        
+        // Password strength checker
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            let strength = 0;
+            
+            // Check password length
+            const lengthRequirement = document.getElementById('length-requirement');
+            if (password.length >= 8) {
+                strength++;
+                lengthRequirement.querySelector('i').classList.add('text-green-400');
+                lengthRequirement.querySelector('i').classList.remove('text-slate-400');
+            } else {
+                lengthRequirement.querySelector('i').classList.remove('text-green-400');
+                lengthRequirement.querySelector('i').classList.add('text-slate-400');
+            }
+            
+            // Check uppercase letters
+            const uppercaseRequirement = document.getElementById('uppercase-requirement');
+            if (/[A-Z]/.test(password)) {
+                strength++;
+                uppercaseRequirement.querySelector('i').classList.add('text-green-400');
+                uppercaseRequirement.querySelector('i').classList.remove('text-slate-400');
+            } else {
+                uppercaseRequirement.querySelector('i').classList.remove('text-green-400');
+                uppercaseRequirement.querySelector('i').classList.add('text-slate-400');
+            }
+            
+            // Check numbers
+            const numberRequirement = document.getElementById('number-requirement');
+            if (/\d/.test(password)) {
+                strength++;
+                numberRequirement.querySelector('i').classList.add('text-green-400');
+                numberRequirement.querySelector('i').classList.remove('text-slate-400');
+            } else {
+                numberRequirement.querySelector('i').classList.remove('text-green-400');
+                numberRequirement.querySelector('i').classList.add('text-slate-400');
+            }
+            
+            // Check special characters
+            const specialRequirement = document.getElementById('special-requirement');
+            if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                strength++;
+                specialRequirement.querySelector('i').classList.add('text-green-400');
+                specialRequirement.querySelector('i').classList.remove('text-slate-400');
+            } else {
+                specialRequirement.querySelector('i').classList.remove('text-green-400');
+                specialRequirement.querySelector('i').classList.add('text-slate-400');
+            }
+            
+            // Update strength meter
+            const strengthMeter = document.getElementById('password-strength');
+            const strengthText = document.getElementById('strength-text');
+            
+            strengthMeter.className = 'password-strength strength-' + strength + ' rounded-full';
+            
+            switch(strength) {
+                case 0:
+                    strengthText.textContent = 'Muito fraca';
+                    strengthText.className = 'ml-2 text-xs text-red-400';
+                    break;
+                case 1:
+                    strengthText.textContent = 'Fraca';
+                    strengthText.className = 'ml-2 text-xs text-red-400';
+                    break;
+                case 2:
+                    strengthText.textContent = 'Moderada';
+                    strengthText.className = 'ml-2 text-xs text-yellow-400';
+                    break;
+                case 3:
+                    strengthText.textContent = 'Forte';
+                    strengthText.className = 'ml-2 text-xs text-green-400';
+                    break;
+                case 4:
+                    strengthText.textContent = 'Muito forte';
+                    strengthText.className = 'ml-2 text-xs text-green-500';
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>
