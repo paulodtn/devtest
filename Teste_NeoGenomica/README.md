@@ -1,8 +1,8 @@
-# NeoGenômica - Sistema de Análise Genômica
+# NeoGenomica - Sistema de Análise Genômica
 
 <div align="center">
 
-![NeoGenômica Logo](https://img.shields.io/badge/NeoGen%C3%B4mica-Sistema%20de%20An%C3%A1lise%20Gen%C3%B4mica-00D6E4?style=for-the-badge)
+![NeoGenomica Logo](https://img.shields.io/badge/NeoGen%C3%B4mica-Sistema%20de%20An%C3%A1lise%20Gen%C3%B4mica-00D6E4?style=for-the-badge)
 
 [![Ruby](https://img.shields.io/badge/Ruby-3.4.4-CC342D?style=flat-square&logo=ruby&logoColor=white)](https://www.ruby-lang.org/)
 [![Rails](https://img.shields.io/badge/Rails-8.0.2-CC0000?style=flat-square&logo=rubyonrails&logoColor=white)](https://rubyonrails.org/)
@@ -14,7 +14,7 @@
 
 ## Sobre o Projeto
 
-O **NeoGenômica** é uma aplicação web full-stack desenvolvida para análise e gerenciamento de dados genômicos, especificamente focada no gerenciamento de primers para sequenciamento genético. O sistema oferece uma interface moderna e intuitiva para visualização, filtros avançados, importação/exportação de dados genômicos e auditoria completa de operações.
+O **NeoGenomica** é uma aplicação web full-stack desenvolvida para análise e gerenciamento de dados genômicos, especificamente focada no gerenciamento de primers para sequenciamento genético. O sistema oferece uma interface moderna e intuitiva para visualização, filtros avançados, importação/exportação de dados genômicos e auditoria completa de operações.
 
 ### Principais Funcionalidades
 
@@ -209,7 +209,7 @@ A API RESTful está disponível em `http://localhost:3000/api/v1/` com os seguin
 
 ### Proteção contra Ataques de Força Bruta
 
-O NeoGenômica implementa um sistema robusto de proteção contra ataques de força bruta no login:
+O NeoGenomica implementa um sistema robusto de proteção contra ataques de força bruta no login:
 
 #### Características do Sistema de Bloqueio:
 - **Limite de Tentativas**: Máximo de 3 tentativas de login por usuário/IP
