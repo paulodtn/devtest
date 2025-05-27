@@ -32,7 +32,12 @@ O **NeoGenômica** é uma aplicação web full-stack desenvolvida para análise 
 ### Demonstração da Aplicação em Funcionamento
 ![Demonstração NeoGenômica](assets/demo.gif)
 
-*GIF demonstrando as principais funcionalidades do sistema: navegação, filtros, CRUD de primers e exportação de dados.*
+*GIF demonstrando as principais funcionalidades do sistema: navegação, CRUD de primers e exportação de dados.*
+
+### Sistema de Filtros Avançados
+![Demonstração dos Filtros](assets/filtros-demo.gif)
+
+*GIF demonstrando o sistema de filtros avançados: busca por texto, filtros genômicos por cromossomo e coordenadas.*
 
 > **Nota**: Para uma demonstração completa, acesse o sistema localmente seguindo as instruções de instalação abaixo.
 
